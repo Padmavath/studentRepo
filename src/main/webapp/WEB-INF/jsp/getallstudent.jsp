@@ -9,6 +9,7 @@
 <link href="~/Content/css/getallstudent.css" rel="stylesheet" type="text/css" />  
 </head>
 <body>
+<h1>All Student data</h1>
 <table>
             <thead>
                 <tr>
