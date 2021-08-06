@@ -39,5 +39,9 @@ public class StudentBean {
 	public void setPassword(int password) {
 		this.password = password;
 	}
+	@Override
+	public String toString() {
+		return "StudentBean [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
+	}
 
 }

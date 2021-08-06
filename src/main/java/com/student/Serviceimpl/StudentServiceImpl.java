@@ -3,21 +3,27 @@ package com.student.Serviceimpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.student.Service.StudentService;
 import com.student.bean.StudentBean;
+import com.student.controller.StudentController;
 import com.student.entity.StudentEntity;
 import com.student.reposetry.StudentEntityReposetry;
 @Service
 //@Component
 public class StudentServiceImpl implements StudentService {
+	Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
+
 	@Autowired
    private StudentEntityReposetry studentEntityReposetry;
 	@Override
 	public List<StudentBean> getallstudent() {
+		logger.info("create a student post method start");
 		List<StudentBean> studentList=new ArrayList<>();
 		List<StudentEntity> studentEntity=studentEntityReposetry.findAll();
 		for (StudentEntity studentEntity2 : studentEntity) {
@@ -28,17 +34,21 @@ public class StudentServiceImpl implements StudentService {
 			studentBean.setPassword(studentEntity2.getPassword());
 			studentList.add(studentBean);
 		}
+
 		return studentList;
 	}
 
 	@Override
 	public void createStudent(StudentBean studentbean) {
-			StudentEntity studentEntity=new StudentEntity();
+		logger.info("create a student post method start");
+		StudentEntity studentEntity=new StudentEntity();
 			studentEntity.setId(studentbean.getId());
 			studentEntity.setName(studentbean.getName());
 			studentEntity.setEmail(studentbean.getEmail());
 			studentEntity.setPassword(studentbean.getPassword());
 			studentEntityReposetry.save(studentEntity);
+			logger.info("create a student post method end");
+
 
 		}
 	
